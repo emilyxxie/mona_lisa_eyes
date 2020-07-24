@@ -1,0 +1,22 @@
+/*
+
+To read:
+https://stackoverflow.com/questions/2941189/how-to-overlay-one-div-over-another-div
+*/
+
+#container {
+  margin-left: 400px;
+  position: relative;
+}
+
+#painting,
+#deepFake {
+  position: absolute;
+  left: 0;
+}
+
+#deepFake {
+  z-index: 10;
+  margin-top: 72px;
+  margin-left: 152px;
+}
