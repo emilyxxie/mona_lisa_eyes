@@ -1,0 +1,55 @@
+/*
+
+To read:
+https://stackoverflow.com/questions/2941189/how-to-overlay-one-div-over-another-div
+
+*/
+#container {
+    margin-left: 200px;
+    position: relative;
+}
+
+#painting,
+#deepFake {
+  position: absolute;
+  left: 0;
+}
+
+#deepFake {
+  z-index: 10;
+  margin-top: 72px;
+  margin-left: 152px;
+  /*opacity: 1;*/
+}
+
+
+
+
+
+
+#deepFake:before {
+    display:block;
+    content:'';
+    position:absolute;
+    width:100%;
+    height:100%;
+    /*background-image: url("source_image.png");*/
+    box-shadow: 0 0 8px 8px transparent inset;
+
+/*    -moz-box-shadow:inset 0px 0px 10px 10px url("source_image.png");
+    -webkit-box-shadow:inset 0px 0px 10px 10px url("source_image.png");
+    box-shadow:inset 0px 0px 10px 10px url("source_image.png");
+    -moz-box-shadow:inset 0px 0px 10px 10px rgba(255, 255, 255, 1);
+    -webkit-box-shadow:inset 0px 0px 10px 10px rgba(255,255,255, 1);
+    box-shadow:inset 0px 0px 10px 10px rgba(255,255,255,1);*/
+}
+
+
+/*#deepFake:after {
+    position:absolute;
+    content:"";
+    width:100%;
+    height:100%;
+    background: url("source_image.png");
+    z-index: -10;
+}*/
