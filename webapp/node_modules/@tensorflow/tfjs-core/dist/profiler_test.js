@@ -1,0 +1,127 @@
+/**
+ * @license
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =============================================================================
+ */
+import * as tf from './index';
+import { describeWithFlags, SYNC_BACKEND_ENVS } from './jasmine_util';
+import { checkComputationForErrors, Logger, Profiler } from './profiler';
+class TestBackendTimer {
+    constructor(delayMs, queryTimeMs, extraInfo) {
+        this.delayMs = delayMs;
+        this.queryTimeMs = queryTimeMs;
+        this.extraInfo = extraInfo;
+        this.counter = 1;
+    }
+    async time(query) {
+        query();
+        const kernelMs = await new Promise(resolve => setTimeout(() => resolve(this.queryTimeMs * this.counter++), this.delayMs));
+        return { kernelMs, getExtraProfileInfo: () => this.extraInfo };
+    }
+}
+class TestLogger extends Logger {
+    logKernelProfile(name, result, vals, timeMs) { }
+}
+describeWithFlags('profiler.Profiler', SYNC_BACKEND_ENVS, () => {
+    it('profiles simple function', doneFn => {
+        const delayMs = 5;
+        const queryTimeMs = 10;
+        const inputs = { 'x': tf.tensor1d([1]) };
+        const extraInfo = '';
+        const timer = new TestBackendTimer(delayMs, queryTimeMs, extraInfo);
+        const logger = new TestLogger();
+        const profiler = new Profiler(timer, logger);
+        spyOn(timer, 'time').and.callThrough();
+        spyOn(logger, 'logKernelProfile').and.callThrough();
+        const timeSpy = timer.time;
+        const logKernelProfileSpy = logger.logKernelProfile;
+        let kernelCalled = false;
+        const result = 1;
+        const resultScalar = tf.scalar(result);
+        profiler.profileKernel('MatMul', inputs, () => {
+            kernelCalled = true;
+            return [resultScalar];
+        });
+        setTimeout(() => {
+            expect(timeSpy.calls.count()).toBe(1);
+            expect(logKernelProfileSpy.calls.count()).toBe(1);
+            expect(logKernelProfileSpy.calls.first().args).toEqual([
+                'MatMul', resultScalar, new Float32Array([result]), queryTimeMs, inputs,
+                extraInfo
+            ]);
+            expect(kernelCalled).toBe(true);
+            doneFn();
+        }, delayMs * 2);
+    });
+    it('profiles nested kernel', doneFn => {
+        const delayMs = 5;
+        const queryTimeMs = 10;
+        const inputs = { 'x': tf.tensor1d([1]) };
+        const extraInfo = '';
+        const timer = new TestBackendTimer(delayMs, queryTimeMs, extraInfo);
+        const logger = new TestLogger();
+        const profiler = new Profiler(timer, logger);
+        spyOn(timer, 'time').and.callThrough();
+        spyOn(logger, 'logKernelProfile').and.callThrough();
+        const timeSpy = timer.time;
+        const logKernelProfileSpy = logger.logKernelProfile;
+        let matmulKernelCalled = false;
+        let maxKernelCalled = false;
+        const result = 1;
+        const resultScalar = tf.scalar(result);
+        profiler.profileKernel('MatMul', inputs, () => {
+            const result = profiler.profileKernel('Max', inputs, () => {
+                maxKernelCalled = true;
+                return [resultScalar];
+            });
+            matmulKernelCalled = true;
+            return result;
+        });
+        setTimeout(() => {
+            expect(timeSpy.calls.count()).toBe(2);
+            expect(logKernelProfileSpy.calls.count()).toBe(2);
+            expect(logKernelProfileSpy.calls.first().args).toEqual([
+                'Max', resultScalar, new Float32Array([result]), queryTimeMs, inputs,
+                extraInfo
+            ]);
+            expect(logKernelProfileSpy.calls.argsFor(1)).toEqual([
+                'MatMul', resultScalar, new Float32Array([result]), queryTimeMs * 2,
+                inputs, extraInfo
+            ]);
+            expect(matmulKernelCalled).toBe(true);
+            expect(maxKernelCalled).toBe(true);
+            doneFn();
+        }, delayMs * 2);
+    });
+});
+describe('profiler.checkComputationForErrors', () => {
+    beforeAll(() => {
+        // Silence warnings.
+        spyOn(console, 'warn');
+    });
+    it('Float32Array has NaN', () => {
+        expect(checkComputationForErrors(new Float32Array([1, 2, 3, NaN, 4, 255]), 'float32', 'test'))
+            .toBe(true);
+    });
+    it('Float32Array has Infinity', () => {
+        expect(checkComputationForErrors(new Float32Array([1, 2, 3, Infinity, 4, 255]), 'float32', 'test'))
+            .toBe(true);
+    });
+    it('Float32Array no NaN', () => {
+        // Int32 and Bool NaNs should not trigger an error.
+        expect(checkComputationForErrors(new Float32Array([1, 2, 3, -1, 4, 255]), 'float32', 'test'))
+            .toBe(false);
+    });
+});
+//# sourceMappingURL=profiler_test.js.map

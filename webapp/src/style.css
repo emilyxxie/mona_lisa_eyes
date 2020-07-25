@@ -20,3 +20,10 @@ https://stackoverflow.com/questions/2941189/how-to-overlay-one-div-over-another-
   margin-top: 72px;
   margin-left: 152px;
 }
+
+#cam {
+  float: right;
+  height: 100px;
+  margin-left: 200px;
+  margin-top: 400px;
+}

@@ -30,11 +30,11 @@ module.exports = {
                 include : path.join(__dirname, 'assets'),
                 loader: "file-loader?name=/assets/[name].[ext]",
             },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: ["babel-loader"]
-            }
+            // {
+            //     test: /\.js$/,
+            //     exclude: /node_modules/,
+            //     use: ["babel-loader"]
+            // }
         ]
     }
 }

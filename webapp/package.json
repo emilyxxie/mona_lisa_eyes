@@ -24,5 +24,12 @@
     "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@tensorflow-models/blazeface": "0.0.5",
+    "@tensorflow/tfjs": "^2.0.1",
+    "@tensorflow/tfjs-backend-wasm": "^2.0.1",
+    "@tensorflow/tfjs-converter": "^2.0.1",
+    "@tensorflow/tfjs-core": "^2.0.1"
   }
 }
