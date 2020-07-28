@@ -49,10 +49,18 @@ async function setupCamera() {
 const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
 const oldImage = document.querySelector("#deepFakeImage");
+let eye;
 
+function moveEyes(leftEye, rightEye) {
+    if (leftEye && rightEye) {
+      eye = (leftEye + rightEye) / 2;
 
-function moveEyes(midEye) {
-    let headPos = Math.floor(map(midEye, 0, video.width, 26, 54));
+    } else if (leftEye < 0) {
+      eye = rightEye;
+    } else if (rightEye > video.width) {
+      eye = leftEye
+    }
+    let headPos = Math.floor(map(eye, 0, video.width, 26, 55));
     headPos = Math.min(Math.max(headPos, 26), 54);
     if (!isNaN(headPos)) {
         const newImage = document.createElement("IMG");
@@ -71,7 +79,7 @@ const renderPrediction = async () => {
   if (predictions.length > 0) {
     const landmarks = predictions[0].landmarks;
     const midEye = (landmarks[0][0] + landmarks[1][0]) / 2;
-    moveEyes(midEye);
+    moveEyes(landmarks[0][0], landmarks[1][0]);
   }
 
   setTimeout(function () {
