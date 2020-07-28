@@ -48,19 +48,17 @@ async function setupCamera() {
 
 const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
+const oldImage = document.querySelector("#deepFakeImage");
+
 
 function moveEyes(midEye) {
-    // console.log(midEye);
-    const cursorPos = Math.floor(map(midEye, 0, 800, 26, 54));
-    if (!isNaN(cursorPos)) {
-        const oldImage = document.querySelector("#deepFakeImage");
+    let headPos = Math.floor(map(midEye, 0, video.width, 26, 54));
+    headPos = Math.min(Math.max(headPos, 26), 54);
+    if (!isNaN(headPos)) {
         const newImage = document.createElement("IMG");
         const ID = document.createElement("id");
-        newImage.src =  '../assets/frames/frame_' + cursorPos + '.png';
-        newImage.id = "deepFakeImage";
-        oldImage.replaceWith(newImage);
+        oldImage.src =  '../assets/frames/frame_' + headPos + '.png';
     }
-
 }
 
 const renderPrediction = async () => {
@@ -76,8 +74,9 @@ const renderPrediction = async () => {
     moveEyes(midEye);
   }
 
-
-    requestAnimationFrame(renderPrediction);
+  setTimeout(function () {
+    requestAnimationFrame(renderPrediction)
+  }, 16);
 };
 
 const setupPage = async () => {
@@ -93,12 +92,6 @@ const setupPage = async () => {
     -webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); \
     transform: scale(-1, 1); filter: FlipH;";
 
-  // canvas = document.getElementById('output');
-  // canvas.width = videoWidth;
-  // canvas.height = videoHeight;
-  // ctx = canvas.getContext('2d');
-  // ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-
   model = await blazeface.load();
 
   renderPrediction();
@@ -106,6 +99,13 @@ const setupPage = async () => {
 
 setupPage();
 
+
+
+  // canvas = document.getElementById('output');
+  // canvas.width = videoWidth;
+  // canvas.height = videoHeight;
+  // ctx = canvas.getContext('2d');
+  // ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
 
 // import "./style.css";
 // import * as blazeface from '@tensorflow-models/blazeface';
@@ -175,13 +175,28 @@ setupPage();
 // // }
 
 
-// function checkCursor(){
 
+// WORKS FINE BELOW
+
+// let cursorX, cursorY;
+
+
+// const width = window.innerWidth;
+// const height = window.innerHeight;
+
+// document.onmousemove = function(e){
+//     cursorX = e.pageX;
+//     cursorY = e.pageY;
+// }
+
+
+// function checkCursor(){
 //     const cursorPos = Math.floor(map(cursorX, 0, width, 26, 54));
 //     if (!isNaN(cursorPos)) {
 //         const oldImage = document.querySelector("#deepFakeImage");
 //         const newImage = document.createElement("IMG");
 //         const ID = document.createElement("id");
+//         console.log("HELLO");
 //         newImage.src =  '../assets/frames/frame_' + cursorPos + '.png';
 //         newImage.id = "deepFakeImage";
 //         oldImage.replaceWith(newImage);
@@ -189,3 +204,6 @@ setupPage();
 //     }
 
 // }
+
+
+// setInterval(checkCursor, 10);
