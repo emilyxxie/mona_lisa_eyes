@@ -13,8 +13,12 @@ https://stackoverflow.com/questions/2941189/how-to-overlay-one-div-over-another-
 #painting,
 #deepFake {
   position: absolute;
-  left: 0;
+  /*top: 50%;*/
+  left: 50%;
+  transform: translate(-50%);
 }
+
+
 
 body {
   background-image: url("assets/stucco.jpg");
@@ -24,8 +28,8 @@ body {
 
 #deepFake {
   z-index: 10;
-  margin-top: 100px;
-  margin-left: 210px;
+  margin-top: 95px;
+  margin-left: 5px;
 }
 
 #cam {

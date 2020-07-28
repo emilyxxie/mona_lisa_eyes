@@ -69,6 +69,7 @@ const renderPrediction = async () => {
 };
 
 const setupPage = async () => {
+  resizeItems();
   await tf.setBackend(state.backend);
   await setupCamera();
   video.play();
@@ -83,7 +84,17 @@ const setupPage = async () => {
 
   model = await blazeface.load();
 
-  // renderPrediction();
+  renderPrediction();
 };
+
+const resizeItems = async() => {
+  const mlWithFrame = document.querySelector("#monaLisaWithFrame");
+  mlWithFrame.style.height = window.innerHeight + "px";
+  const deepFakeImage = document.querySelector("#deepFakeImage");
+  deepFakeImage.style.height = (window.innerHeight) / 3.5 + "px";
+  // deepFakeImage.style.marginLeft = window.innerWidth / 1000 + "px";
+}
+
+window.addEventListener('resize', resizeItems)
 
 setupPage();
