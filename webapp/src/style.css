@@ -4,28 +4,28 @@ To read:
 https://stackoverflow.com/questions/2941189/how-to-overlay-one-div-over-another-div
 */
 
+
+
 #container {
-  margin-left: 400px;
   position: relative;
 }
 
 #painting,
-#frame
 #deepFake {
   position: absolute;
   left: 0;
 }
 
-#frame {
-  z-index: -10;
-  margin-left: -100px;
-  margin-top: -100px;
+body {
+  background-image: url("assets/stucco.jpg");
+  background-repeat: repeat;
 }
+
 
 #deepFake {
   z-index: 10;
-  margin-top: 72px;
-  margin-left: 152px;
+  margin-top: 100px;
+  margin-left: 210px;
 }
 
 #cam {

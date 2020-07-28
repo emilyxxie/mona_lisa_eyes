@@ -26,6 +26,10 @@ module.exports = {
                 use: ["style-loader", "css-loader"]
             },
             {
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader'
+            },
+            {
                 test: /\.(png|svg|jpg|gif)$/,
                 include : path.join(__dirname, 'assets'),
                 loader: "file-loader?name=/assets/[name].[ext]",
