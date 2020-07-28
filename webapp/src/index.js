@@ -83,7 +83,7 @@ const setupPage = async () => {
 
   model = await blazeface.load();
 
-  renderPrediction();
+  // renderPrediction();
 };
 
 setupPage();

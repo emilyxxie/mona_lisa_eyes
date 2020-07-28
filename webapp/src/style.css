@@ -10,9 +10,16 @@ https://stackoverflow.com/questions/2941189/how-to-overlay-one-div-over-another-
 }
 
 #painting,
+#frame
 #deepFake {
   position: absolute;
   left: 0;
+}
+
+#frame {
+  z-index: -10;
+  margin-left: -100px;
+  margin-top: -100px;
 }
 
 #deepFake {
