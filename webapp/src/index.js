@@ -47,7 +47,7 @@ function moveEyes(leftEye, rightEye) {
     if (!isNaN(headPos)) {
         const newImage = document.createElement("IMG");
         const ID = document.createElement("id");
-        oldImage.src =  '../assets/frames/frame_' + headPos + '.png';
+        oldImage.src =  './assets/frames/frame_' + headPos + '.png';
     }
 }
 
