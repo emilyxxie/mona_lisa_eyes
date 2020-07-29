@@ -65,7 +65,7 @@ const renderPrediction = async () => {
 
   setTimeout(function () {
     requestAnimationFrame(renderPrediction)
-  }, 15);
+  }, 40);
 };
 
 const setupPage = async () => {
@@ -83,16 +83,23 @@ const setupPage = async () => {
     transform: scale(-1, 1); filter: FlipH;";
 
   model = await blazeface.load();
-
-  renderPrediction();
 };
+
+const heightRatio = 0.33603092783;
+const headTopRatio = 0.11082474226;
+const marginLeftRatio = 0.0197368421;
 
 const resizeItems = async() => {
   const mlWithFrame = document.querySelector("#monaLisaWithFrame");
+  console.log("ML WITH FRAME", mlWithFrame.width);
   mlWithFrame.style.height = window.innerHeight + "px";
+
   const deepFakeImage = document.querySelector("#deepFakeImage");
-  deepFakeImage.style.height = (window.innerHeight) *  0.3298969 + "px";
-  // deepFakeImage.style.top = "-" + (window.innerHeight / 114) + "px";
+  const deepFakeContainer = document.querySelector("#deepFake");
+  deepFakeImage.style.height = window.innerHeight *  heightRatio + "px";
+  deepFakeContainer.style.marginTop = window.innerHeight * headTopRatio + "px";
+  // Calculate the margin left with respect to the actual picture
+  deepFakeContainer.style.marginLeft = monaLisaWithFrame.width * marginLeftRatio + "px";
 }
 
 window.addEventListener('resize', resizeItems)
