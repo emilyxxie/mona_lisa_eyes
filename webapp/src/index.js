@@ -98,7 +98,7 @@ const resizeItems = async() => {
   const deepFakeContainer = document.querySelector("#deepFake");
   deepFakeImage.style.height = window.innerHeight *  heightRatio + "px";
   deepFakeContainer.style.marginTop = window.innerHeight * headTopRatio + "px";
-  // Calculate the margin left with respect to the actual picture
+  // Calculate the margin left with respect to the width of the picture
   deepFakeContainer.style.marginLeft = monaLisaWithFrame.width * marginLeftRatio + "px";
 }
 
