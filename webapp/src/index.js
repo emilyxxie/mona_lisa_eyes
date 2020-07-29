@@ -47,7 +47,7 @@ function moveEyes(leftEye, rightEye) {
     if (!isNaN(headPos)) {
         const newImage = document.createElement("IMG");
         const ID = document.createElement("id");
-        oldImage.src =  '../assets/frames_3/frame_' + headPos + '.png';
+        oldImage.src =  '../assets/frames/frame_' + headPos + '.png';
     }
 }
 
@@ -91,7 +91,6 @@ const marginLeftRatio = 0.0197368421;
 
 const resizeItems = async() => {
   const mlWithFrame = document.querySelector("#monaLisaWithFrame");
-  console.log("ML WITH FRAME", mlWithFrame.width);
   mlWithFrame.style.height = window.innerHeight + "px";
 
   const deepFakeImage = document.querySelector("#deepFakeImage");
