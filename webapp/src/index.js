@@ -90,8 +90,8 @@ const setupPage = async () => {
 const resizeItems = async() => {
   const mlWithFrame = document.querySelector("#monaLisaWithFrame");
   mlWithFrame.style.height = window.innerHeight + "px";
-  // const deepFakeImage = document.querySelector("#deepFakeImage");
-  // deepFakeImage.style.height = (window.innerHeight) / 3.35 + "px";
+  const deepFakeImage = document.querySelector("#deepFakeImage");
+  deepFakeImage.style.height = (window.innerHeight) *  0.3298969 + "px";
   // deepFakeImage.style.top = "-" + (window.innerHeight / 114) + "px";
 }
 
