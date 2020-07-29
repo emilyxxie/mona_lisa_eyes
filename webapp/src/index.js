@@ -42,12 +42,12 @@ function moveEyes(leftEye, rightEye) {
     } else if (rightEye > video.width) {
       eye = leftEye
     }
-    let headPos = Math.floor(map(eye, 0, video.width, 26, 55));
-    headPos = Math.min(Math.max(headPos, 26), 54);
+    let headPos = Math.floor(map(eye, 0, video.width, 0, 64));
+    headPos = Math.min(Math.max(headPos, 0), 64);
     if (!isNaN(headPos)) {
         const newImage = document.createElement("IMG");
         const ID = document.createElement("id");
-        oldImage.src =  '../assets/frames/frame_' + headPos + '.png';
+        oldImage.src =  '../assets/frames_3/frame_' + headPos + '.png';
     }
 }
 
@@ -90,9 +90,9 @@ const setupPage = async () => {
 const resizeItems = async() => {
   const mlWithFrame = document.querySelector("#monaLisaWithFrame");
   mlWithFrame.style.height = window.innerHeight + "px";
-  const deepFakeImage = document.querySelector("#deepFakeImage");
-  deepFakeImage.style.height = (window.innerHeight) / 3.5 + "px";
-  // deepFakeImage.style.marginLeft = window.innerWidth / 1000 + "px";
+  // const deepFakeImage = document.querySelector("#deepFakeImage");
+  // deepFakeImage.style.height = (window.innerHeight) / 3.35 + "px";
+  // deepFakeImage.style.top = "-" + (window.innerHeight / 114) + "px";
 }
 
 window.addEventListener('resize', resizeItems)

@@ -28,9 +28,10 @@ body {
 
 #deepFake {
   z-index: 10;
-  margin-top: 95px;
-  margin-left: 5px;
+  margin-top: 86px;
+  margin-left: 12px;
 }
+
 
 #cam {
   float: right;
