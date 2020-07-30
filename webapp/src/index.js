@@ -98,7 +98,7 @@ const setupPage = async () => {
     transform: scale(-1, 1); filter: FlipH;";
 
   model = await blazeface.load();
-  // renderPrediction();
+  renderPrediction();
 };
 
 const heightRatio = 0.33603092783;
