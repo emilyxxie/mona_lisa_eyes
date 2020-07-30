@@ -8,6 +8,21 @@ tfjsWasm.setWasmPath('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm
 
 let model, ctx, videoWidth, videoHeight, video, canvas;
 
+let images = [];
+let image_paths = [];
+
+for (let i = 0; i <= 32; i++) {
+  image_paths.push(`./assets/frames/frame_${i}.png`)
+}
+
+function preload(image_list) {
+    for (var i = 0; i < image_list.length; i++) {
+        console.log(`Preloaded ${i}`);
+        images[i] = new Image();
+        images[i].src = image_list[i];
+    }
+}
+
 const state = {
   backend: 'wasm'
 };
@@ -42,8 +57,8 @@ function moveEyes(leftEye, rightEye) {
     } else if (rightEye > video.width) {
       eye = leftEye
     }
-    let headPos = Math.floor(map(eye, 0, video.width, 0, 64));
-    headPos = Math.min(Math.max(headPos, 0), 64);
+    let headPos = Math.floor(map(eye, 0, video.width, 0, 32));
+    headPos = Math.min(Math.max(headPos, 0), 32);
     if (!isNaN(headPos)) {
         const newImage = document.createElement("IMG");
         const ID = document.createElement("id");
@@ -83,7 +98,7 @@ const setupPage = async () => {
     transform: scale(-1, 1); filter: FlipH;";
 
   model = await blazeface.load();
-  renderPrediction();
+  // renderPrediction();
 };
 
 const heightRatio = 0.33603092783;
@@ -104,4 +119,6 @@ const resizeItems = async() => {
 
 window.addEventListener('resize', resizeItems)
 
+// Pre-fetch all of the images for a smoother experience
+preload(image_paths);
 setupPage();
