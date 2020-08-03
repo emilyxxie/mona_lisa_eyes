@@ -4,35 +4,96 @@ To read:
 https://stackoverflow.com/questions/2941189/how-to-overlay-one-div-over-another-div
 */
 
-
-
-#container {
-  position: relative;
-}
-
-#painting,
-#deepFake {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-}
-
 body {
   background-image: url("assets/blended_black_stucco.jpg");
   background-repeat: repeat;
+
+}
+
+#container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /*overflow: hidden;*/
+}
+
+#paddingContainer {
+  flex: 1;
+}
+
+#mainItems {
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+#monaLisaWithFrame {
+  height: 800px;
 }
 
 
 #deepFake {
-  z-index: 10;
-  /*margin-top: 86px;*/
-  /*margin-left: 12px;*/
+  position: absolute;
 }
 
 
-#cam {
+#paintingItems {
+  flex: 1;
+}
+
+#museumLabelContainer {
+  flex: 1;
+  display: flex;
+  margin-left: 40px;
+  justify-content: left;
+  display: flex;
+  align-items: center;
+}
+
+#museumLabel {
+  align-items: center;
+  width: 300px;
+  font-size: 12px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 2px;
+  -webkit-box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
+}
+
+p {
+  font-family: 'EB Garamond', serif;
+}
+
+
+
+/*#monaLisaWithFrame {
+  min-height: 480px;
+  padding: 0px;
+}
+
+#museumLabel {
+  background-color: white;
   float: right;
-  height: 100px;
-  margin-left: 200px;
-  margin-top: 400px;
+  width: 400px;
+  height: 400px;
+  -webkit-box-shadow: -5px 5px 5px 5px rgba(0,0,0,0.75);
+  -moz-box-shadow: -5px 5px 5px 5px rgba(0,0,0,0.75);
+  box-shadow: -5px 5px 5px 5px rgba(0,0,0,0.75);
 }
+
+
+.description, .labelHeader {
+  size: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+p {
+  padding: 2px;
+}
+*/
+
+
+
+

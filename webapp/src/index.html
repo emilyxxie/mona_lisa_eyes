@@ -5,17 +5,35 @@
     <title>Mona Lisa's Eyes</title>
 </head>
 <body>
+
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 <div id="container">
-  <div class="mainItems">
-    <div id="painting">
-      <img id="monaLisaWithFrame" src="./assets/mona_lisa_with_frame_2.png"></img>
+  <div id="paddingContainer"></div>
+
+    <div id="mainItems">
+
+      <div id="paintingItems">
+        <div id="painting">
+          <img id="monaLisaWithFrame" src="./assets/mona_lisa_with_frame_2.png"></img>
+        </div>
+        <div id="deepFake">
+          <img id="deepFakeImage" src="./assets/frames/frame_15.png"></img>
+        </div>
+      </div>
     </div>
-    <div id="deepFake">
-      <img id="deepFakeImage" src="./assets/frames/frame_15.png"></img>
+    <div id="museumLabelContainer">
+        <div id="museumLabel">
+          <p class="labelHeader"><b>The Mona Lisa Effect</b></p>
+          <p class="description"><b>Artist:</b> Emily Xie</p>
+          <p class="description">
+          Urban legend says that Mona Lisa's eyes follow you as you move around the room. If you turn on your webcam, the eyes of this digital portrait will actually do so.</p>
+          <p><b>Notes</b>: This app not save any of your data, and it does not work on mobile.</p>
+          <p>c. 2020</p>
+          <p class="description"><b>Materials:</b> TensorflowJS, First Order Model, Javascript, Python</p>
+        </div>
+        <video id="cam"></video>
     </div>
-    <video id="cam"></video>
-    <canvas id="output"></div>
-  </div>
+
 </div>
 </body>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-76474262-3"></script>

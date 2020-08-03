@@ -6,7 +6,21 @@ import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
 tfjsWasm.setWasmPath('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@latest/dist/tfjs-backend-wasm.wasm');
 
 
+
+const heightRatio = 0.33603092783;
+const headTopRatio = -0.89425587467;
+
+
+const marginLeftRatio = 0.30777839955;
+const camWidthRatio = 0.2;
+const camHeightRatio = 0.4;
+
+// const labelWidthRatio = 0.5;
+
+
 let model, ctx, videoWidth, videoHeight, video, canvas;
+
+
 
 let images = [];
 let image_paths = [];
@@ -17,7 +31,6 @@ for (let i = 0; i <= 32; i++) {
 
 function preload(image_list) {
     for (var i = 0; i < image_list.length; i++) {
-        console.log(`Preloaded ${i}`);
         images[i] = new Image();
         images[i].src = image_list[i];
     }
@@ -97,27 +110,45 @@ const setupPage = async () => {
     -webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); \
     transform: scale(-1, 1); filter: FlipH;";
 
+  const cam = document.querySelector("#cam");
+  cam.style.width = monaLisaWithFrame.width * camWidthRatio + "px";
+  // cam.style.height = monaLisaWithFrame.height * camHeightRatio + "px";
+  cam.style.height = "100px";
+
   model = await blazeface.load();
+
   renderPrediction();
 };
 
-const heightRatio = 0.33603092783;
-const headTopRatio = 0.11082474226;
-const marginLeftRatio = 0.0197368421;
 
 const resizeItems = async() => {
   const mlWithFrame = document.querySelector("#monaLisaWithFrame");
   mlWithFrame.style.height = window.innerHeight + "px";
 
+  const paintingItems = document.querySelector("#paintingItems");
   const deepFakeImage = document.querySelector("#deepFakeImage");
+  deepFakeImage.style.height = paintingItems.offsetHeight *  heightRatio + "px";
+  /* Figure out the positioning of the deep fake */
   const deepFakeContainer = document.querySelector("#deepFake");
-  deepFakeImage.style.height = window.innerHeight *  heightRatio + "px";
-  deepFakeContainer.style.marginTop = window.innerHeight * headTopRatio + "px";
+  deepFakeContainer.style.marginTop = paintingItems.clientHeight * headTopRatio + 2 + "px";
   // Calculate the margin left with respect to the width of the picture
-  deepFakeContainer.style.marginLeft = monaLisaWithFrame.width * marginLeftRatio + "px";
+  deepFakeContainer.style.marginLeft = monaLisaWithFrame.width * marginLeftRatio  + "px";
+
+
+  // const museumLabelContainer = document.querySelector("#museumLabelContainer");
+  // debugger;
+  // museumLabelContainer.style.height = paintingItems.clientHeight / 10;
+
+
+
+  // const museumLabel = document.querySelector("#museumLabel");
+  // museumLabel.style.height = paintingItems.height * 0.005 + "px";
+  // museumLabel.style.maxHeight = paintingItems.clientHeight + "px";
+  // museumLabelContainer.style.width = paintingItemsContainer * labelWidthRatio + "px";
+
 }
 
-window.addEventListener('resize', resizeItems)
+window.addEventListener('resize', resizeItems);
 
 // Pre-fetch all of the images for a smoother experience
 preload(image_paths);
