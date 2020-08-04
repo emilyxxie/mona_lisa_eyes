@@ -15,7 +15,6 @@ const marginLeftRatio = 0.30577839955;
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const camWidthRatio = 0.2;
-const camHeightRatio = 0.4;
 
 let model, ctx, videoWidth, videoHeight, video, canvas;
 
@@ -110,6 +109,11 @@ const setupPage = async () => {
     -webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); \
     transform: scale(-1, 1); filter: FlipH;";
 
+  video.setAttribute('autoplay', '');
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
+
+
   const cam = document.querySelector("#cam");
   cam.style.width = monaLisaWithFrame.width * camWidthRatio + "px";
   cam.style.height = "100px";
@@ -120,21 +124,21 @@ const setupPage = async () => {
 
 
 const resizeItems = async() => {
-  const mlWithFrame = document.querySelector("#monaLisaWithFrame");
-  mlWithFrame.style.height = window.innerHeight + "px";
+  const monaLisaWithFrame = document.querySelector("#monaLisaWithFrame");
+  monaLisaWithFrame.style.height = window.innerHeight + "px";
 
   const paintingItems = document.querySelector("#paintingItems");
   const deepFakeImage = document.querySelector("#deepFakeImage");
-  deepFakeImage.style.height = paintingItems.offsetHeight *  heightRatio + "px";
+  deepFakeImage.style.height = monaLisaWithFrame.offsetHeight *  heightRatio + "px";
   /* Figure out the positioning of the deep fake */
-  // const deepFake = document.querySelector("#deepFake");
   deepFakeImage.style.marginTop = monaLisaWithFrame.clientHeight * headTopRatio +   "px";
   // Calculate the margin left with respect to the width of the picture
   deepFakeImage.style.marginLeft = monaLisaWithFrame.width * marginLeftRatio  + "px";
 }
 
+
 window.addEventListener('resize', resizeItems);
-// On mouse-over, execute myFunction
+
 
 
 // Pre-fetch all of the images for a smoother experience

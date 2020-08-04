@@ -34,6 +34,11 @@ body {
   display: flex;
   flex: 1;
   flex-direction: row;
+  /*min-height: 622px;*/
+}
+
+#monaLisaWithFrame {
+  min-height: 622px;
 }
 
 #museumLabelWrapper {
@@ -72,15 +77,9 @@ a:hover {
   background-color: white;
   padding: 20px;
   border-radius: 2px;
-/*  -webkit-box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
-  -moz-box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
-  box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
-*/
-
--webkit-box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.75);
-box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.75);
-
+  -webkit-box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.75);
+  box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.75);
   background-image: url("assets/natural_paper_bg.png");
   background-size: 100% 100%;
 }
@@ -90,25 +89,6 @@ box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.75);
   padding-left: 2px;
 }
 
-
-@media only screen and (max-width: 1024px) {
-/*
-  #container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-  }
-
-  #museumLabelContainer {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-  }
-*/
-
-
-}
 
 
 @media only screen and (max-width: 768px) {
