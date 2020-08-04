@@ -17,12 +17,7 @@ const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const camWidthRatio = 0.2;
 const camHeightRatio = 0.4;
 
-// const labelWidthRatio = 0.5;
-
-
 let model, ctx, videoWidth, videoHeight, video, canvas;
-
-
 
 let images = [];
 let image_paths = [];
@@ -82,6 +77,9 @@ function moveEyes(leftEye, rightEye) {
 }
 
 const renderPrediction = async () => {
+  if (isSafari) {
+    resizeItems();
+  }
   const returnTensors = false;
   const flipHorizontal = true;
   const annotateBoxes = true;
