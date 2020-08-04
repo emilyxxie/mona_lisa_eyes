@@ -8,13 +8,12 @@ tfjsWasm.setWasmPath('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm
 
 
 const heightRatio = 0.33603092783;
-
 const headTopRatio = 0.11002474226;
-// const marginLeftRatio = 0.0197368421;
-// const headTopRatio = -0.89425587467;
-
 
 const marginLeftRatio = 0.30577839955;
+
+
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const camWidthRatio = 0.2;
 const camHeightRatio = 0.4;
 
@@ -115,11 +114,9 @@ const setupPage = async () => {
 
   const cam = document.querySelector("#cam");
   cam.style.width = monaLisaWithFrame.width * camWidthRatio + "px";
-  // cam.style.height = monaLisaWithFrame.height * camHeightRatio + "px";
   cam.style.height = "100px";
 
   model = await blazeface.load();
-
   renderPrediction();
 };
 
@@ -136,22 +133,11 @@ const resizeItems = async() => {
   deepFakeImage.style.marginTop = monaLisaWithFrame.clientHeight * headTopRatio +   "px";
   // Calculate the margin left with respect to the width of the picture
   deepFakeImage.style.marginLeft = monaLisaWithFrame.width * marginLeftRatio  + "px";
-
-
-  // const museumLabelContainer = document.querySelector("#museumLabelContainer");
-  // debugger;
-  // museumLabelContainer.style.height = paintingItems.clientHeight / 10;
-
-
-
-  // const museumLabel = document.querySelector("#museumLabel");
-  // museumLabel.style.height = paintingItems.height * 0.005 + "px";
-  // museumLabel.style.maxHeight = paintingItems.clientHeight + "px";
-  // museumLabelContainer.style.width = paintingItemsContainer * labelWidthRatio + "px";
-
 }
 
 window.addEventListener('resize', resizeItems);
+// On mouse-over, execute myFunction
+
 
 // Pre-fetch all of the images for a smoother experience
 preload(image_paths);

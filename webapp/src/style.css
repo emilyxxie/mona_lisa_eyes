@@ -18,6 +18,7 @@ body {
 
 #paddingContainer {
   flex: 1;
+  flex-shrink: 10;
 }
 
 #mainItems {
@@ -25,16 +26,9 @@ body {
   flex-wrap: nowrap;
 }
 
-#monaLisaWithFrame {
-  height: 800px;
-  /*min-height: 600px;*/
-}
-
-
 #deepFake {
   position: absolute;
 }
-
 
 #paintingItems {
   display: flex;
@@ -46,15 +40,30 @@ body {
   flex: 1;
   display: flex;
   margin-left: 40px;
+  padding-right: 40px;
   justify-content: left;
   display: flex;
   align-items: center;
 }
 
 #museumLabelContainer {
-  margin-top: 80px;
+  margin-top: 120px;
   display: flex;
   flex-direction: column;
+}
+
+.labelHeader {
+  font-size: 16px;
+}
+
+a:link, a:visited, a:active {
+ color: black;
+ text-decoration: none;
+}
+
+a:hover {
+  text-decoration: None;
+  color: gray;
 }
 
 #museumLabel {
@@ -63,9 +72,17 @@ body {
   background-color: white;
   padding: 20px;
   border-radius: 2px;
-  -webkit-box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
+/*  -webkit-box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
   -moz-box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
   box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
+*/
+
+-webkit-box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.75);
+box-shadow: 3px 5px 4px 0px rgba(0,0,0,0.75);
+
+  background-image: url("assets/natural_paper_bg.png");
+  background-size: 100% 100%;
 }
 
 #labelVideo {
@@ -74,3 +91,41 @@ body {
 }
 
 
+@media only screen and (max-width: 1024px) {
+/*
+  #container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  #museumLabelContainer {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+*/
+
+
+}
+
+
+@media only screen and (max-width: 768px) {
+
+  #container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  #museumLabelContainer {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
+}
