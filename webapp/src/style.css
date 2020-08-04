@@ -14,7 +14,6 @@ body {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  /*overflow: hidden;*/
 }
 
 #paddingContainer {
@@ -28,6 +27,7 @@ body {
 
 #monaLisaWithFrame {
   height: 800px;
+  /*min-height: 600px;*/
 }
 
 
@@ -37,10 +37,12 @@ body {
 
 
 #paintingItems {
+  display: flex;
   flex: 1;
+  flex-direction: row;
 }
 
-#museumLabelContainer {
+#museumLabelWrapper {
   flex: 1;
   display: flex;
   margin-left: 40px;
@@ -49,8 +51,13 @@ body {
   align-items: center;
 }
 
+#museumLabelContainer {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
 #museumLabel {
-  align-items: center;
   width: 300px;
   font-size: 12px;
   background-color: white;
@@ -61,39 +68,9 @@ body {
   box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.75);
 }
 
-p {
-  font-family: 'EB Garamond', serif;
+#labelVideo {
+  padding-top: 20px;
+  padding-left: 2px;
 }
-
-
-
-/*#monaLisaWithFrame {
-  min-height: 480px;
-  padding: 0px;
-}
-
-#museumLabel {
-  background-color: white;
-  float: right;
-  width: 400px;
-  height: 400px;
-  -webkit-box-shadow: -5px 5px 5px 5px rgba(0,0,0,0.75);
-  -moz-box-shadow: -5px 5px 5px 5px rgba(0,0,0,0.75);
-  box-shadow: -5px 5px 5px 5px rgba(0,0,0,0.75);
-}
-
-
-.description, .labelHeader {
-  size: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-}
-
-p {
-  padding: 2px;
-}
-*/
-
-
 
 

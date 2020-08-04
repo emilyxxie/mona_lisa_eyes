@@ -8,10 +8,13 @@ tfjsWasm.setWasmPath('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm
 
 
 const heightRatio = 0.33603092783;
-const headTopRatio = -0.89425587467;
+
+const headTopRatio = 0.11002474226;
+// const marginLeftRatio = 0.0197368421;
+// const headTopRatio = -0.89425587467;
 
 
-const marginLeftRatio = 0.30777839955;
+const marginLeftRatio = 0.30577839955;
 const camWidthRatio = 0.2;
 const camHeightRatio = 0.4;
 
@@ -129,10 +132,10 @@ const resizeItems = async() => {
   const deepFakeImage = document.querySelector("#deepFakeImage");
   deepFakeImage.style.height = paintingItems.offsetHeight *  heightRatio + "px";
   /* Figure out the positioning of the deep fake */
-  const deepFakeContainer = document.querySelector("#deepFake");
-  deepFakeContainer.style.marginTop = paintingItems.clientHeight * headTopRatio + 2 + "px";
+  // const deepFake = document.querySelector("#deepFake");
+  deepFakeImage.style.marginTop = monaLisaWithFrame.clientHeight * headTopRatio +   "px";
   // Calculate the margin left with respect to the width of the picture
-  deepFakeContainer.style.marginLeft = monaLisaWithFrame.width * marginLeftRatio  + "px";
+  deepFakeImage.style.marginLeft = monaLisaWithFrame.width * marginLeftRatio  + "px";
 
 
   // const museumLabelContainer = document.querySelector("#museumLabelContainer");
