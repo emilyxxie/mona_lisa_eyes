@@ -3,15 +3,13 @@ import * as blazeface from '@tensorflow-models/blazeface';
 import * as tf from '@tensorflow/tfjs-core';
 import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
 
-tfjsWasm.setWasmPath('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm@latest/dist/tfjs-backend-wasm.wasm');
-
-
+tfjsWasm.setWasmPath("./assets/tfjs-backend-wasm.wasm");
 
 const heightRatio = 0.33603092783;
 const headTopRatio = 0.11002474226;
 
 const marginLeftRatio = 0.30577839955;
-
+const isMobile = (/Mobi/.test(navigator.userAgent));
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const camWidthRatio = 0.2;
@@ -76,9 +74,7 @@ function moveEyes(leftEye, rightEye) {
 }
 
 const renderPrediction = async () => {
-  if (isSafari) {
-    resizeItems();
-  }
+  resizeItems();
   const returnTensors = false;
   const flipHorizontal = true;
   const annotateBoxes = true;
@@ -99,7 +95,6 @@ const setupPage = async () => {
   resizeItems();
   await tf.setBackend(state.backend);
   await setupCamera();
-  video.play();
 
   videoWidth = video.videoWidth;
   videoHeight = video.videoHeight;
@@ -112,7 +107,7 @@ const setupPage = async () => {
   video.setAttribute('autoplay', '');
   video.setAttribute('muted', '');
   video.setAttribute('playsinline', '');
-
+  video.play();
 
   const cam = document.querySelector("#cam");
   cam.style.width = monaLisaWithFrame.width * camWidthRatio + "px";
@@ -124,8 +119,14 @@ const setupPage = async () => {
 
 
 const resizeItems = async() => {
+
   const monaLisaWithFrame = document.querySelector("#monaLisaWithFrame");
-  monaLisaWithFrame.style.height = window.innerHeight + "px";
+
+  if (isMobile) {
+    monaLisaWithFrame.style.height = document.documentElement.clientHeight - 600 + "px";
+  } else {
+    monaLisaWithFrame.style.height = window.innerHeight + "px";
+  }
 
   const paintingItems = document.querySelector("#paintingItems");
   const deepFakeImage = document.querySelector("#deepFakeImage");
@@ -135,7 +136,6 @@ const resizeItems = async() => {
   // Calculate the margin left with respect to the width of the picture
   deepFakeImage.style.marginLeft = monaLisaWithFrame.width * marginLeftRatio  + "px";
 }
-
 
 window.addEventListener('resize', resizeItems);
 

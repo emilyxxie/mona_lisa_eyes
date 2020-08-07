@@ -34,7 +34,6 @@ body {
   display: flex;
   flex: 1;
   flex-direction: row;
-  /*min-height: 622px;*/
 }
 
 #monaLisaWithFrame {
@@ -92,6 +91,40 @@ a:hover {
 
 
 @media only screen and (max-width: 768px) {
+
+  #container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  #museumLabelContainer {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+
+
+@media only screen and (max-device-width: 768px) {
+  #container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  #museumLabelContainer {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+
+@media only screen and (max-device-width : 640px) {
 
   #container {
     display: flex;

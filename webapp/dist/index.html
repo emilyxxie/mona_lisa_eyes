@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,17 +6,40 @@
 </head>
 <body>
 
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 <div id="container">
-  <div class="mainItems">
-    <div id="painting">
-      <img id="monaLisaWithFrame" src="./assets/mona_lisa_with_frame_2.png"></img>
+  <div id="paddingContainer"></div>
+
+    <div id="mainItems">
+
+      <div id="paintingItems">
+        <div id="painting">
+          <img id="monaLisaWithFrame" src="./assets/mona_lisa_with_frame_2.jpg"></img>
+        </div>
+        <div id="deepFake">
+          <img id="deepFakeImage" src="./assets/frames/frame_15.png"></img>
+        </div>
+      </div>
     </div>
-    <div id="deepFake">
-      <img id="deepFakeImage" src="./assets/frames/frame_30.png"></img>
+    <div id="museumLabelWrapper">
+        <div id="museumLabelContainer">
+          <div id="museumLabel">
+            <p class="labelHeader"><b>The Mona Lisa Effect</b>, c. 2020<br>
+            <a id="artistLink" href="https://xie-emily.com">Emily Xie</a><p>
+            <p>
+            <!-- <br> -->
+            Mixed Media; Tensorflow, First Order Motion Model, JS</p>
+            <p class="description">
+            Urban legend says that Mona Lisa's eyes follow you as you move around the room. If you enable your webcam, the eyes of this digital portrait will do just that.</p>
+
+            <p><b>Notes</b>: This site will not save any of your data. Also, it does not work on mobile.</p>
+          </div>
+          <div id="labelVideo">
+            <video id="cam"></video>
+          </div>
+        </div>
     </div>
-    <video id="cam"></video>
-    <canvas id="output"></div>
-  </div>
+
 </div>
 <script src="index.js"></script></body>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-76474262-3"></script>
