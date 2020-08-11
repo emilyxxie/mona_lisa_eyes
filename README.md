@@ -8,3 +8,6 @@ Urban legend says that Mona Lisa's eyes will follow you as you move around the r
 If you enable your webcam, the eyes of this digital portrait will do just that.
 
 ![Demo](demo_giphy.gif)
+
+#### Made With
+TensorflowJS (BlazeFace), First Order Motion Model, Python, Javascript
