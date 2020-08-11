@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     // The path.resolve() function will create a path appending
@@ -18,6 +19,7 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [{ from:'src/assets',to:'assets' }]
         }),
+        new BundleAnalyzerPlugin()
     ],
     module: {
         rules: [

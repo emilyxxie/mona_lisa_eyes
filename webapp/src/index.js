@@ -5,10 +5,13 @@ import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
 
 tfjsWasm.setWasmPath("./assets/tfjs-backend-wasm.wasm");
 
-import '@fortawesome/fontawesome-free/js/fontawesome'
-import '@fortawesome/fontawesome-free/js/solid'
-import '@fortawesome/fontawesome-free/js/regular'
-import '@fortawesome/fontawesome-free/js/brands'
+import { library, icon, dom } from '@fortawesome/fontawesome-svg-core';
+import { faCoffee, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faTwitterSquare, faGithub } from '@fortawesome/free-brands-svg-icons';
+
+library.add(faTwitterSquare, faGithub, faCoffee, faUserCircle);
+
+dom.watch();
 
 const heightRatio = 0.33603092783;
 const headTopRatio = 0.11002474226;
@@ -78,6 +81,13 @@ function moveEyes(leftEye, rightEye) {
     }
 }
 
+function appendIcons() {
+  const museumLabel = document.querySelector("#museumLabel");
+  console.log(iconsList);
+  debugger;
+  console.log(museumLabel);
+}
+
 const renderPrediction = async () => {
   resizeItems();
   const returnTensors = false;
@@ -119,6 +129,7 @@ const setupPage = async () => {
   cam.style.height = "100px";
 
   model = await blazeface.load();
+  // appendIcons();
   renderPrediction();
 };
 
