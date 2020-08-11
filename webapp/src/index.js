@@ -5,6 +5,11 @@ import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
 
 tfjsWasm.setWasmPath("./assets/tfjs-backend-wasm.wasm");
 
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
+import '@fortawesome/fontawesome-free/js/brands'
+
 const heightRatio = 0.33603092783;
 const headTopRatio = 0.11002474226;
 
