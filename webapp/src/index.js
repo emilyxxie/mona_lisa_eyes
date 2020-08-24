@@ -28,7 +28,7 @@ let images = [];
 let image_paths = [];
 
 for (let i = 0; i <= 32; i++) {
-  image_paths.push(`./assets/frames/frame_${i}.png`)
+  image_paths.push(`./assets/frames/frame_${i}.jpg`)
 }
 
 function preload(image_list) {
@@ -77,7 +77,7 @@ function moveEyes(leftEye, rightEye) {
     if (!isNaN(headPos)) {
         const newImage = document.createElement("IMG");
         const ID = document.createElement("id");
-        oldImage.src =  './assets/frames/frame_' + headPos + '.png';
+        oldImage.src =  './assets/frames/frame_' + headPos + '.jpg';
     }
 }
 
