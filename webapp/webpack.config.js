@@ -19,7 +19,7 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [{ from:'src/assets',to:'assets' }]
         }),
-        new BundleAnalyzerPlugin()
+        new BundleAnalyzerPlugin({"analyzerPort": 8089})
     ],
     module: {
         rules: [

@@ -81,12 +81,6 @@ function moveEyes(leftEye, rightEye) {
     }
 }
 
-function appendIcons() {
-  const museumLabel = document.querySelector("#museumLabel");
-  console.log(iconsList);
-  debugger;
-  console.log(museumLabel);
-}
 
 const renderPrediction = async () => {
   resizeItems();
@@ -129,7 +123,7 @@ const setupPage = async () => {
   cam.style.height = "100px";
 
   model = await blazeface.load();
-  // appendIcons();
+
   renderPrediction();
 };
 
