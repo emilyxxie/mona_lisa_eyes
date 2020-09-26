@@ -4,3 +4,4 @@ data/*
 .netlify
 file_paths.txt
 */node_modules/*
+webapp/dist/*
