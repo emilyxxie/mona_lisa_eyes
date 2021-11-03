@@ -3,3 +3,5 @@ data/*
 # Local Netlify folder
 .netlify
 file_paths.txt
+*/node_modules/*
+webapp/dist/*
